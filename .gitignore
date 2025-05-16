@@ -37,6 +37,8 @@ bin/
 
 ### Librairies externes ###
 /lib/
+/META-INF/
+/livraisons
 
 ### Fichiers système ###
 Thumbs.db
