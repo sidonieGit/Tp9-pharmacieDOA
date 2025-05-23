@@ -46,4 +46,8 @@ public class ServiceClient {
                 })
                 .orElse(false);
     }
+    // ✅ Recherche d’un client par email
+    public Optional<Client> rechercherParEmail(String email) throws DataBaseException {
+        return clientDAO.trouverParEmail(email);
+    }
 }

@@ -7,55 +7,24 @@ import com.sido.syspharma.domaine.model.Client;
 import com.sido.syspharma.exceptions.DataBaseException;
 import org.apache.log4j.Logger;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static com.sido.syspharma.database.ConnexionDB.getConnection;
-
-public class ClientDAOImpl extends AbstractDAO implements IClientDAO{
+/**
+ * Implémentation DAO pour les opérations liées aux clients.
+ */
+public class ClientDAOImpl extends AbstractDAO implements IClientDAO {
 
     private static final Logger logger = Logger.getLogger(ClientDAOImpl.class);
 
     public ClientDAOImpl() {
-        try {
-            creerTableSiNonExistante(); // 👈 Création automatique à l'initialisation
-        } catch (DataBaseException e) {
-            logger.fatal("💥 Impossible de vérifier/créer la table client", e);
-        }
+        // Constructeur par défaut
     }
-    /**
-     * ✅ Crée la table client si elle n'existe pas encore.
-     */
-    private void creerTableSiNonExistante() throws DataBaseException {
-        String sql = """
-                CREATE TABLE IF NOT EXISTS client (
-                    id INT PRIMARY KEY AUTO_INCREMENT,
-                    nom VARCHAR(100),
-                    prenom VARCHAR(100),
-                    email VARCHAR(150) UNIQUE,
-                    adresse VARCHAR(255),
-                    telephone VARCHAR(20),
-                    password VARCHAR(100),
-                    role VARCHAR(20)
-                )
-                """;
 
-        try (Statement stmt = getConnection().createStatement()) {
-            stmt.executeUpdate(sql);
-            logger.info("🧱 Table 'client' vérifiée/créée avec succès.");
-        } catch (SQLException e) {
-            throw new DataBaseException("Erreur création table client", e);
-        } finally {
-            closeConnection();
-        }
-    }
     /**
-     * 🔄 Insertion d’un nouveau client
+     * 🔄 Insertion d’un nouveau client dans la base de données.
      */
     @Override
     public boolean inserer(Client client) throws DataBaseException {
@@ -71,10 +40,12 @@ public class ClientDAOImpl extends AbstractDAO implements IClientDAO{
             stmt.setString(7, Role.CLIENT.name());
 
             int rows = stmt.executeUpdate();
-            logger.info("✅ Client inséré : " + client.getEmail());
+
+            logger.info("✅ Client inséré avec succès : " + client.getEmail());
             return rows > 0;
 
         } catch (SQLException e) {
+            logger.error("❌ Erreur lors de l'insertion du client : " + client.getEmail(), e);
             throw new DataBaseException("❌ Insertion client échouée", e);
         } finally {
             closeConnection();
@@ -82,7 +53,7 @@ public class ClientDAOImpl extends AbstractDAO implements IClientDAO{
     }
 
     /**
-     * 🔍 Rechercher client par email (login)
+     * 🔍 Recherche un client par son email (utile pour la connexion).
      */
     @Override
     public Optional<Client> trouverParEmail(String email) throws DataBaseException {
@@ -90,22 +61,24 @@ public class ClientDAOImpl extends AbstractDAO implements IClientDAO{
 
         try (PreparedStatement stmt = prepareStatement(sql)) {
             stmt.setString(1, email);
-            ResultSet rs = stmt.executeQuery();
 
+            ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
-                Client c = new Client(
+                Client client = new Client(
                         rs.getString("nom"),
                         rs.getString("prenom"),
                         rs.getString("email"),
                         rs.getString("adresse"),
                         rs.getString("telephone"),
                         rs.getString("password"),
-                        null // commande (pas utile ici)
+                        null // Le numéro de commande n'est pas concerné ici
                 );
-                return Optional.of(c);
+
+                return Optional.of(client);
             }
 
         } catch (SQLException e) {
+            logger.error("❌ Erreur lors de la recherche du client avec email : " + email, e);
             throw new DataBaseException("Erreur recherche client", e);
         } finally {
             closeConnection();
@@ -115,7 +88,7 @@ public class ClientDAOImpl extends AbstractDAO implements IClientDAO{
     }
 
     /**
-     * 🔁 Lister tous les clients
+     * 🔁 Liste tous les clients présents dans la base.
      */
     @Override
     public List<Client> listerTous() throws DataBaseException {
@@ -126,7 +99,7 @@ public class ClientDAOImpl extends AbstractDAO implements IClientDAO{
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
-                clients.add(new Client(
+                Client client = new Client(
                         rs.getString("nom"),
                         rs.getString("prenom"),
                         rs.getString("email"),
@@ -134,10 +107,12 @@ public class ClientDAOImpl extends AbstractDAO implements IClientDAO{
                         rs.getString("telephone"),
                         rs.getString("password"),
                         null
-                ));
+                );
+                clients.add(client);
             }
 
         } catch (SQLException e) {
+            logger.error("❌ Erreur lors du listage des clients", e);
             throw new DataBaseException("Erreur listage clients", e);
         } finally {
             closeConnection();
