@@ -42,3 +42,9 @@ bin/
 
 ### Fichiers système ###
 Thumbs.db
+### Fichiers identifiants d'accès à la base de donnée ###
+/src/config.properties
+
+
+### journalisation
+/resources

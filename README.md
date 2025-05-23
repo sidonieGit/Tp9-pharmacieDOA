@@ -7,54 +7,63 @@ Elle permet aux clients, agents de pharmacie et administrateurs d’interagir av
 
 ## 👥 Acteurs
 
-- **Client** : Recherche, commande et paie les médicaments.
-- **Agent de pharmacie** : Gère les médicaments, les assurances et les commandes.
-- **Administrateur** : Supervise les pharmacies, les utilisateurs et les statistiques.
+- **Client** : recherche, commande, paie les médicaments.
+- **Agent de pharmacie** : gère les médicaments, les assurances, les commandes.
+- **Administrateur** : supervise l'ensemble des utilisateurs, pharmacies et statistiques.
 
----
 
 ## 🧾 Fonctionnalités (Version 3)
 
-### 🔐 Utilisateurs authentifiés :
+### 🔐 Authentification & Compte
 - Connexion / déconnexion
+- Création de compte client
 - Mise à jour du compte
-- Rechercher un médicament (par nom, par catégorie, ou dans une pharmacie donnée)
-- Rechercher une assurance ou celles prises en charge par une pharmacie
-- Gérer un panier :
-  - Ajouter un article
-  - Supprimer un article
-  - Vider le panier
-  - Obtenir le montant total
+- Système de rôles : `ADMIN`, `CLIENT`, `AGENT_PHARMACIE`
+- Statut du compte : `ACTIF`, `DESACTIVE`
 
 ---
 
-### 👤 Spécifiquement pour les **clients** :
-- Créer un compte
-- Passer une commande de médicaments dans une pharmacie
-- Consulter une commande à une date donnée
-- Obtenir un récapitulatif de commande (montant + articles)
-- Effectuer le paiement (Espèce ou en ligne)
+### 🧪 Médicament & Assurance
+- Rechercher un médicament :
+  - Par nom
+  - Par catégorie
+  - Dans une pharmacie donnée
+- Ajouter / modifier / supprimer un médicament (agent)
+- Rechercher assurance par nom
+- Ajouter / modifier / supprimer une assurance
 
 ---
 
-### 🧑‍⚕️ Spécifiquement pour les **agents de pharmacie** :
-- Ajouter, modifier, supprimer et lister les médicaments
-- Ajouter, modifier, supprimer et lister les assurances
-- Lister les commandes
-- Confirmer la livraison après paiement ou retrait
-- Lister les clients ayant commandé dans une pharmacie (par statut)
-- Vérifier la pharmacie associée à une commande
+### 🛒 Panier & Commande
+- Ajouter / supprimer un article
+- Incrémenter / décrémenter la quantité
+- Vider le panier
+- Calculer le montant total
+- Passer une commande (avec pharmacie)
+- Paiement par `ESPECE`, `MOMO`, etc.
 
 ---
 
-### 🛠️ Spécifiquement pour les **administrateurs** :
-- Ajouter, modifier, supprimer et lister les pharmacies
-- Créer un compte pour un agent de pharmacie
-- Gérer les comptes utilisateur (client / agent)
-- Modifier le statut d’un compte (actif, désactivé, etc.)
-- Lister toutes les commandes d’une pharmacie
-- Afficher les statistiques globales ou par pharmacie
-- Lister les médicaments les plus commandés
+### 📦 Statistiques
+- Chiffre d’affaires sur une période
+- Nombre de clients
+- Médicaments les plus commandés
+- Nombre total de produits vendus
+
+---
+
+
+## 🛠️ Outils & bonnes pratiques
+
+- ✅ Architecture en 4 couches : `domaine`, `dao`, `service`, `presentation`
+- ✅ Utilisation de `PreparedStatement` pour sécuriser les requêtes
+- ✅ Factorisation de la connexion JDBC (via `ConnexionDB`)
+- ✅ Externalisation de la config via `config.properties`
+- ✅ Logging centralisé avec `log4j`
+- ✅ Gestion personnalisée des exceptions via `DataBaseException`
+- ✅ Utilisation de **Stream** et **Expression Lambda** (Java 8+)
+
+---
 
 ---
 
@@ -84,50 +93,77 @@ Les principales entités du projet sont :
 
 ### 🧰 Use Case Diag
 
-![use case diagram](src/com/syspharma/projet/domaine/img/UseCaseDiagV9Sido.PNG)
+![use case diagram](src/com/sido/syspharma/presentation/img/UseCaseDiagV9Sido.PNG)
 
 ### 📘 Class Diagram
-![class diagram](src/com/syspharma/projet/domaine/img/ClassDiagramV9.jpg)
+![class diagram](src/com/sido/syspharma/presentation/img/ClassDiagramV9.jpg)
 
 ### 📘 Class Diagram découpage moderne (évolution avec classes services)
-![class diagram](src/com/syspharma/projet/domaine/img/ClassDiagramV9Services.jpg)
+![class diagram](src/com/sido/syspharma/presentation/img/ClassDiagramV9Services.jpg)
 
 ---
 
 ## 📁 Structure du projet
 
-![Structure du projet](src/com/syspharma/projet/domaine/img/StructureProjet.PNG)
+![Structure du projet](src/com/sido/syspharma/presentation/img/StructureProjet.PNG)
 
 ---
 
-## 🚀 Technologies utilisées
+## ⚙️ Technologies utilisées
 
-- Java (POO + Collections : `List`, `Set`, `Map`)
+- Java 17
+- JDBC avec **MySQL**
+- Pattern DAO + Service
+- Fichier `.properties` (I18N/config externe)
+- Logging avec **Log4j 1.2.17**
 - IntelliJ IDEA
-- Git & GitHub
-- MySQL (préparation couche DAO)
+- Git / GitHub
 
 ---
 
 ## 📈 État d’avancement
 
-- [x] Modélisation UML
-- [x] Classes métier et héritage
-- [x] Interfaces & services
-- [x] Gestion des comptes
-- [x] Gestion du panier et des commandes
-- [x] DAO & Connexion MySQL (préparée)
-- [ ] Interface graphique (JavaFX / Web)
+| Tâche                                  | Statut |
+| -------------------------------------- | ------ |
+| Architecture en couches                | ✅      |
+| Connexion JDBC factorisée              | ✅      |
+| Services spécialisés                   | ✅      |
+| DAO avec interfaces et implémentations | ✅      |
+| Gestion d’erreurs personnalisée        | ✅      |
+| Logging Log4j                          | ✅      |
+| Lambda / Stream Java 8+                | ✅      |
+| Interface Console                      | ✅      |
+| Interface Swing / Web                  | ⏳      |
+| Maven / Automatisation                 | 🔜     |
+
 
 ---
 
- Projet SystPharma (TP Java Orienté Objet + Accès Base de Données)
+## 📂 Fichiers importants
+- /config.properties → contient la configuration BD
+- /logs/syspharma.log → contient tous les logs (info, erreur)
+- /lib/ → contient le driver MySQL et log4j
+- /presentation/Main.java → point d’entrée console (temporaire)
+- Main.java
+
+---
+
+## 🔐 Sécurité
+
+- Requêtes paramétrées (PreparedStatement)
+- Fichier config hors code
+- Logger pour tracer les anomalies
+- Pas d’information sensible en dur dans le code source
+
+---
 
 
 ## 👩‍💻 Auteur
 
-- Sidonie — Apprenante Fullstack Java, Objis (Février 2024–2025)
+Ce projet a été réalisé dans le cadre du TP Java Orienté Objet + JDBC (Objis).
+Guidé par les bonnes pratiques professionnelles et pédagogiques.
+(Février 2024–2025)
 - Linkedin: www.linkedin.com/in/sidonie-djuissi-fohouo
 - Email: sidoniedjuissifohouo@gmail.com
 - Tel: +237 696 00 23 77
-- Dernière mise à jour 16/05/2025
+- Dernière mise à jour 23/05/2025
