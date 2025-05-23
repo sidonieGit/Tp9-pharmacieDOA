@@ -43,3 +43,13 @@
 2025-05-23 12:00:47,472 [DEBUG] com.sido.syspharma.dao.impl.MedicamentDAOImpl - 🔍 2 médicament(s) trouvé(s).
 2025-05-23 12:00:47,492 [INFO] com.sido.syspharma.Main - 🔍 Médicaments trouvés pour : d
 2025-05-23 12:01:27,777 [INFO] com.sido.syspharma.dao.impl.ClientDAOImpl - 🧱 Table 'client' vérifiée/créée avec succès.
+2025-05-23 18:58:06,151 [INFO] com.sido.syspharma.dao.impl.ClientDAOImpl - 🧱 Table 'client' vérifiée/créée avec succès.
+2025-05-23 18:59:39,462 [INFO] com.sido.syspharma.dao.impl.ClientDAOImpl - 🧱 Table 'client' vérifiée/créée avec succès.
+2025-05-23 18:59:58,349 [INFO] com.sido.syspharma.service.ServiceClient - Connexion OK pour : syspharma@gamil.com
+2025-05-23 18:59:58,349 [INFO] com.sido.syspharma.presentation.Main - Utilisateur connecté : syspharma@gamil.com
+2025-05-23 19:00:08,361 [INFO] com.sido.syspharma.dao.impl.MedicamentDAOImpl - 🔎 Recherche des médicaments contenant : do
+2025-05-23 19:00:08,377 [DEBUG] com.sido.syspharma.dao.impl.MedicamentDAOImpl - 🔍 1 médicament(s) trouvé(s).
+2025-05-23 19:22:16,954 [INFO] com.sido.syspharma.service.ServiceClient - Connexion OK pour : syspharma@gamil.com
+2025-05-23 19:22:16,956 [INFO] com.sido.syspharma.presentation.Main - Utilisateur connecté : syspharma@gamil.com
+2025-05-23 19:22:32,070 [INFO] com.sido.syspharma.dao.impl.MedicamentDAOImpl - 🔎 Recherche des médicaments contenant : do
+2025-05-23 19:22:32,084 [DEBUG] com.sido.syspharma.dao.impl.MedicamentDAOImpl - 🔍 1 médicament(s) trouvé(s).
