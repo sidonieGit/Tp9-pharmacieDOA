@@ -1,0 +1,45 @@
+2025-05-22 08:54:08,872 [INFO] com.sido.syspharma.Main - 🚀 Log4j est bien configuré !
+2025-05-22 08:54:08,873 [DEBUG] com.sido.syspharma.Main - 🔍 Ceci est un message de DEBUG
+2025-05-22 08:54:08,873 [ERROR] com.sido.syspharma.Main - ❌ Ceci est un message d'ERREUR (exemple)
+2025-05-22 08:55:43,631 [INFO] com.sido.syspharma.Main - 🚀 Log4j est bien configuré !
+2025-05-22 08:55:43,632 [DEBUG] com.sido.syspharma.Main - 🔍 Ceci est un message de DEBUG
+2025-05-22 08:55:43,632 [ERROR] com.sido.syspharma.Main - ❌ Ceci est un message d'ERREUR (exemple)
+2025-05-22 09:02:46,862 [INFO] com.sido.syspharma.Main - 🚀 Log4j est bien configuré !
+2025-05-22 09:02:46,863 [DEBUG] com.sido.syspharma.Main - 🔍 Ceci est un message de DEBUG
+2025-05-22 09:02:46,864 [ERROR] com.sido.syspharma.Main - ❌ Ceci est un message d'ERREUR (exemple)
+2025-05-22 09:02:59,788 [INFO] com.sido.syspharma.Main - 🚀 Log4j est bien configuré !
+2025-05-22 09:02:59,789 [DEBUG] com.sido.syspharma.Main - 🔍 Ceci est un message de DEBUG
+2025-05-22 09:02:59,789 [ERROR] com.sido.syspharma.Main - ❌ Ceci est un message d'ERREUR (exemple)
+2025-05-22 09:10:13,791 [INFO] com.sido.syspharma.Main - 🚀 Log4j est bien configuré !
+2025-05-22 09:10:13,792 [DEBUG] com.sido.syspharma.Main - 🔍 Ceci est un message de DEBUG
+2025-05-22 09:10:13,793 [ERROR] com.sido.syspharma.Main - ❌ Ceci est un message d'ERREUR (exemple)
+2025-05-22 09:10:34,755 [WARN] com.sido.syspharma.Main - ⚠️ Aucun médicament trouvé pour : g
+2025-05-22 09:11:22,950 [INFO] com.sido.syspharma.Main - 🚀 Log4j est bien configuré !
+2025-05-22 09:11:22,951 [DEBUG] com.sido.syspharma.Main - 🔍 Ceci est un message de DEBUG
+2025-05-22 09:11:22,951 [ERROR] com.sido.syspharma.Main - ❌ Ceci est un message d'ERREUR (exemple)
+2025-05-22 09:11:28,584 [INFO] com.sido.syspharma.Main - 🔍 Médicaments trouvés pour : do
+2025-05-22 09:24:14,257 [INFO] com.sido.syspharma.Main - 🚀 Log4j est bien configuré !
+2025-05-22 09:24:14,259 [DEBUG] com.sido.syspharma.Main - 🔍 Ceci est un message de DEBUG
+2025-05-22 09:24:14,259 [ERROR] com.sido.syspharma.Main - ❌ Ceci est un message d'ERREUR (exemple)
+2025-05-22 09:24:41,028 [INFO] com.sido.syspharma.Main - 🔍 Médicaments trouvés pour : f
+2025-05-22 11:23:29,991 [INFO] com.sido.syspharma.Main - 🚀 Log4j est bien configuré !
+2025-05-22 11:23:29,992 [DEBUG] com.sido.syspharma.Main - 🔍 Ceci est un message de DEBUG
+2025-05-22 11:23:29,992 [ERROR] com.sido.syspharma.Main - ❌ Ceci est un message d'ERREUR (exemple)
+2025-05-22 11:24:53,854 [INFO] com.sido.syspharma.dao.MedicamentDAOImpl - 🔄 Insertion d'un médicament : para
+2025-05-22 11:24:53,915 [DEBUG] com.sido.syspharma.dao.MedicamentDAOImpl - ✅ 1 ligne(s) insérée(s).
+2025-05-22 11:24:53,924 [INFO] com.sido.syspharma.Main - ✅ Médicament inséré : para
+2025-05-22 12:23:49,073 [INFO] com.sido.syspharma.dao.ClientDAOImpl - 🧱 Table 'client' vérifiée/créée avec succès.
+2025-05-22 12:24:35,091 [DEBUG] com.sido.syspharma.service.ServiceClient - Tentative de création de compte : syspharma@gamil.com
+2025-05-22 12:24:35,216 [INFO] com.sido.syspharma.dao.ClientDAOImpl - ✅ Client inséré : syspharma@gamil.com
+2025-05-22 12:24:45,225 [INFO] com.sido.syspharma.dao.ClientDAOImpl - 🧱 Table 'client' vérifiée/créée avec succès.
+2025-05-22 12:24:56,567 [DEBUG] com.sido.syspharma.service.ServiceClient - Tentative de création de compte : d
+2025-05-22 12:24:56,677 [INFO] com.sido.syspharma.dao.ClientDAOImpl - ✅ Client inséré : d
+2025-05-22 12:28:55,069 [INFO] com.sido.syspharma.dao.ClientDAOImpl - 🧱 Table 'client' vérifiée/créée avec succès.
+2025-05-22 14:17:03,991 [INFO] com.sido.syspharma.dao.impl.ClientDAOImpl - 🧱 Table 'client' vérifiée/créée avec succès.
+2025-05-23 12:00:25,945 [INFO] com.sido.syspharma.Main - 🚀 Log4j est bien configuré !
+2025-05-23 12:00:25,947 [DEBUG] com.sido.syspharma.Main - 🔍 Ceci est un message de DEBUG
+2025-05-23 12:00:25,947 [ERROR] com.sido.syspharma.Main - ❌ Ceci est un message d'ERREUR (exemple)
+2025-05-23 12:00:47,428 [INFO] com.sido.syspharma.dao.impl.MedicamentDAOImpl - 🔎 Recherche des médicaments contenant : d
+2025-05-23 12:00:47,472 [DEBUG] com.sido.syspharma.dao.impl.MedicamentDAOImpl - 🔍 2 médicament(s) trouvé(s).
+2025-05-23 12:00:47,492 [INFO] com.sido.syspharma.Main - 🔍 Médicaments trouvés pour : d
+2025-05-23 12:01:27,777 [INFO] com.sido.syspharma.dao.impl.ClientDAOImpl - 🧱 Table 'client' vérifiée/créée avec succès.
