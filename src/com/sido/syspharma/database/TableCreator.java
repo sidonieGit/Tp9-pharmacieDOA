@@ -30,6 +30,10 @@ public class TableCreator {
         }
     }
 
+    /**
+     *
+     * @throws DataBaseException
+     */
     public static void createTableMedicamentIfNotExists() throws DataBaseException {
         String sql = """
             CREATE TABLE IF NOT EXISTS medicament (

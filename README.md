@@ -96,10 +96,10 @@ Les principales entités du projet sont :
 ![use case diagram](src/com/sido/syspharma/presentation/img/UseCaseDiagV9Sido.PNG)
 
 ### 📘 Class Diagram
-![class diagram](src/com/sido/syspharma/presentation/img/ClassDiagramV9.jpg)
+![class diagram](src/com/sido/syspharma/presentation/img/ClassDiagramV10.jpg)
 
 ### 📘 Class Diagram découpage moderne (évolution avec classes services)
-![class diagram](src/com/sido/syspharma/presentation/img/ClassDiagramV9Services.jpg)
+![class diagram](src/com/sido/syspharma/presentation/img/ClassDiagramServiceV10.jpg)
 
 ---
 

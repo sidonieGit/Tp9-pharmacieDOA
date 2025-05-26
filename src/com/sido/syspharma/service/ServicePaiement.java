@@ -8,7 +8,7 @@ import com.sido.syspharma.domaine.enums.StatutCommande;
 /**
  * Service dédié à la gestion des paiements.
  */
-public class ServicePaiement {
+public class ServicePaiement implements com.sido.syspharma.service.interfaces.IServicePaiement {
 
     /**
      * Effectue un paiement sur une commande donnée.
@@ -17,6 +17,7 @@ public class ServicePaiement {
      * @param modePaiement Le mode de paiement utilisé (ESPECE, MOMO, OMO)
      * @return le paiement enregistré
      */
+    @Override
     public Paiement effectuerPaiement(Commande commande, ModePaiement modePaiement) {
         double montant = commande.getPanier().calculerMontantTotal();
 
@@ -39,6 +40,7 @@ public class ServicePaiement {
      * @param commande la commande concernée
      * @return le montant total
      */
+    @Override
     public double calculerMontant(Commande commande) {
         return commande.getPanier().calculerMontantTotal();
     }

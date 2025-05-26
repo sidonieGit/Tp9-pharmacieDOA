@@ -4,14 +4,16 @@ import com.sido.syspharma.domaine.commande.Commande;
 import com.sido.syspharma.domaine.commande.Panier;
 import com.sido.syspharma.domaine.enums.StatutCommande;
 import com.sido.syspharma.domaine.model.Client;
-import com.sido.syspharma.domaine.model.Medicament;
+import com.sido.syspharma.service.interfaces.IServiceCommande;
 import com.sido.syspharma.domaine.model.Pharmacie;
+
 
 import java.time.LocalDate;
 import java.util.List;
 
-public class ServiceCommande {
+public class ServiceCommande implements IServiceCommande {
 
+    @Override
     public Commande passerCommande(Client client, Pharmacie pharmacie) {
         Panier panier = client.getPanier();
         panier.valider();
@@ -20,35 +22,32 @@ public class ServiceCommande {
         return commande;
     }
 
-    public List<Commande> listerCommandesParPharmacie(List<Commande> commandes, Pharmacie pharmacie) {
+    @Override
+    public void annulerCommande(Commande commande) {
+        commande.setStatut(StatutCommande.ANNULEE);
+    }
+
+    @Override
+    public void confirmerLivraison(Commande commande) {
+        commande.setStatut(StatutCommande.LIVREE);
+    }
+
+    @Override
+    public List<Commande> listerParClient(Client client) {
+        return client.getCommandes();
+    }
+
+    @Override
+    public List<Commande> listerParPharmacie(List<Commande> commandes, Pharmacie pharmacie) {
         return commandes.stream()
                 .filter(c -> c.getPharmacie().equals(pharmacie))
                 .toList();
     }
 
-    public List<Commande> listerCommandesParClient(Client client) {
-        return client.getCommandes();
-    }
-
-    public Commande consulterCommandeParDate(Client client, LocalDate date) {
+    @Override
+    public Commande consulterParDate(Client client, LocalDate date) {
         return client.getCommandes().stream()
                 .filter(c -> c.getDateCommande().equals(date))
                 .findFirst().orElse(null);
-    }
-
-    public List<Medicament> listerMedicamentsCommandes(Client client, String numeroCommande) {
-        return client.getCommandes().stream()
-                .filter(c -> c.getNumeroCommande().equals(numeroCommande))
-                .flatMap(c -> c.getPanier().getArticles().stream())
-                .map(a -> a.getMedicament())
-                .toList();
-    }
-
-    public void annulerCommande(Commande commande) {
-        commande.setStatut(StatutCommande.ANNULEE);
-    }
-
-    public void confirmerLivraison(Commande commande) {
-        commande.setStatut(StatutCommande.LIVREE);
     }
 }
