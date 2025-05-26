@@ -15,35 +15,31 @@ import java.util.stream.Collectors;
 /**
  * Service lié aux actions de l’agent de pharmacie : gestion des stocks et assurances.
  */
-public class ServiceAgentPharmacie {
+public class ServiceAgentPharmacie implements com.sido.syspharma.service.interfaces.IServiceAgentPharmacie {
 
     // ---------- Gestion des médicaments ----------
 
+    @Override
     public void ajouterMedicament(Pharmacie pharmacie, Medicament medicament) {
         pharmacie.getStock().add(medicament);
     }
 
+    @Override
     public void supprimerMedicament(Pharmacie pharmacie, Medicament medicament) {
         pharmacie.getStock().remove(medicament);
     }
 
+    @Override
     public void modifierMedicament(Medicament medicament, String nouvelleDescription) {
         medicament.setDescription(nouvelleDescription);
     }
 
+    @Override
     public List<Medicament> listerMedicaments(Pharmacie pharmacie) {
         return pharmacie.getStock();
     }
 
-    // ---------- Gestion des assurances ----------
 
-    public void ajouterAssurance(Pharmacie pharmacie, Assurance assurance) {
-        pharmacie.getAssurances().add(assurance);
-    }
-
-    public void supprimerAssurance(Pharmacie pharmacie, Assurance assurance) {
-        pharmacie.getAssurances().remove(assurance);
-    }
 
     // ---------- Interaction avec les services de commande ----------
 
@@ -52,6 +48,7 @@ public class ServiceAgentPharmacie {
      * Lister les clients ayant passé une commande dans une pharmacie,
      * avec ou sans filtre de statut.
      */
+    @Override
     public Set<Client> listerClientsAyantCommandeDansPharmacie(List<Commande> commandes, Pharmacie pharmacie, StatutCommande statut) {
         return commandes.stream()
                 .filter(c -> c.getPharmacie().equals(pharmacie))
@@ -63,6 +60,7 @@ public class ServiceAgentPharmacie {
     /**
      * Vérifie dans quelle pharmacie une commande a été enregistrée.
      */
+    @Override
     public Pharmacie verifierPharmacieCommande(Client client, String numeroCommande) {
         return client.getCommandes().stream()
                 .filter(c -> c.getNumeroCommande().equals(numeroCommande))

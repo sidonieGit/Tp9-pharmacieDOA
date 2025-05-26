@@ -53,3 +53,9 @@
 2025-05-23 19:22:16,956 [INFO] com.sido.syspharma.presentation.Main - Utilisateur connecté : syspharma@gamil.com
 2025-05-23 19:22:32,070 [INFO] com.sido.syspharma.dao.impl.MedicamentDAOImpl - 🔎 Recherche des médicaments contenant : do
 2025-05-23 19:22:32,084 [DEBUG] com.sido.syspharma.dao.impl.MedicamentDAOImpl - 🔍 1 médicament(s) trouvé(s).
+2025-05-24 11:38:45,686 [FATAL] com.sido.syspharma.presentation.Main - 🚨 Erreur lors de la création des tables : ERREUR ACCES BASE DE DONNEES: ⚠️ La connexion à la base de données a échoué. Vérifiez la configuration.
+2025-05-24 11:41:46,702 [INFO] com.sido.syspharma.service.ServiceClient - Connexion OK pour : syspharma@gamil.com
+2025-05-24 11:41:46,706 [INFO] com.sido.syspharma.presentation.Main - Utilisateur connecté : syspharma@gamil.com
+2025-05-24 11:42:08,245 [INFO] com.sido.syspharma.dao.impl.MedicamentDAOImpl - 🔎 Recherche des médicaments contenant : doliprane
+2025-05-24 11:42:08,269 [DEBUG] com.sido.syspharma.dao.impl.MedicamentDAOImpl - 🔍 1 médicament(s) trouvé(s).
+2025-05-26 15:50:48,168 [FATAL] com.sido.syspharma.presentation.Main - 💥 Erreur métier : ERREUR MÉTIER : Connexion impossible

@@ -1,65 +1,51 @@
 package com.sido.syspharma.service;
 
-import com.sido.syspharma.domaine.model.Assurance;
 import com.sido.syspharma.domaine.model.Medicament;
 import com.sido.syspharma.domaine.model.Pharmacie;
+import com.sido.syspharma.exceptions.BusinessException;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
- * Service de recherche métier pour médicaments, pharmacies et assurances.
+ * Service de gestion des médicaments (CRUD + recherche).
  */
-public class ServiceMedicament {
+public class ServiceMedicament implements com.sido.syspharma.service.interfaces.IServiceMedicament {
 
-    // 🔍 Rechercher un médicament par nom dans toutes les pharmacies
-    public Medicament rechercherMedicamentParNom(String nomMedoc, List<Pharmacie> pharmacies) {
-        for (Pharmacie pharmacie : pharmacies) {
-            for (Medicament medicament : pharmacie.getStock()) {
-                if (medicament.getDesignation().equalsIgnoreCase(nomMedoc)) {
-                    return medicament;
-                }
-            }
-        }
-        return null;
+    @Override
+    public void ajouterMedicament(Pharmacie pharmacie, Medicament medicament) {
+        pharmacie.getStock().add(medicament);
     }
 
-    // 🔍 Rechercher un médicament par nom dans une pharmacie donnée
-    public Medicament rechercherMedicamentParNomDansPharmacie(String nomMedoc, Pharmacie pharmacie) {
-        return pharmacie.getStock().stream()
-                .filter(m -> m.getDesignation().equalsIgnoreCase(nomMedoc))
-                .findFirst()
-                .orElse(null);
+    @Override
+    public void supprimerMedicament(Pharmacie pharmacie, Medicament medicament) {
+        pharmacie.getStock().remove(medicament);
     }
 
-    // 🔍 Rechercher un médicament par nom et catégorie
-    public Medicament rechercherMedicamentParNomEtCategorie(String nomMedoc, String nomCategorie, List<Pharmacie> pharmacies) {
+    @Override
+    public void modifierMedicament(Medicament medicament, String nouvelleDescription) {
+        medicament.setDescription(nouvelleDescription);
+    }
+
+    @Override
+    public List<Medicament> listerMedicaments(Pharmacie pharmacie) {
+        return pharmacie.getStock();
+    }
+
+    @Override
+    public Medicament rechercherMedicamentParNom(String nom, List<Pharmacie> pharmacies) throws BusinessException {
         return pharmacies.stream()
                 .flatMap(p -> p.getStock().stream())
-                .filter(m -> m.getDesignation().equalsIgnoreCase(nomMedoc))
-                .filter(m -> m.getCategorie().getDesignation().equalsIgnoreCase(nomCategorie))
+                .filter(m -> m.getDesignation().equalsIgnoreCase(nom))
                 .findFirst()
-                .orElse(null);
+                .orElseThrow(() -> new BusinessException("Aucun médicament trouvé avec ce nom."));
     }
 
-    // 🔍 Rechercher tous les médicaments d'une catégorie dans une pharmacie
-    public List<Medicament> rechercherMedicamentsParCategorie(String categorie, Pharmacie pharmacie) {
+    @Override
+    public List<Medicament> rechercherParCategorie(Pharmacie pharmacie, String categorie) {
         return pharmacie.getStock().stream()
                 .filter(m -> m.getCategorie().getDesignation().equalsIgnoreCase(categorie))
                 .collect(Collectors.toList());
     }
-
-    // 🔍 Rechercher tous les médicaments disponibles dans une pharmacie
-    public List<Medicament> rechercherMedicamentsParPharmacie(String nomPharmacie, List<Pharmacie> pharmacies) {
-        Optional<Pharmacie> pharmacieOpt = pharmacies.stream()
-                .filter(p -> p.getDesignation().equalsIgnoreCase(nomPharmacie))
-                .findFirst();
-
-        return pharmacieOpt.map(Pharmacie::getStock).orElse(List.of());
-    }
-
-
-
-
 }
